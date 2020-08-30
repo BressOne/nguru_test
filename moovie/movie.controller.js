@@ -34,6 +34,8 @@ const create = async (req, res) => {
   if (possibleExisting) {
     const existing = await model.find({ Title: req.body.Title });
     preMap = mergeOldAndNew(existing._doc, req.body);
+  } else {
+    preMap = req.body;
   }
 
   const mapedMoovieEntity = mapMovieToDomain(preMap);
