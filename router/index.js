@@ -8,7 +8,7 @@ const commentsController = require('../comment/comment.controller');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.get('/', (req, res) => { res.json({ message: 'NetGuru test task' }); });
+router.get('/', (req, res) => { res.json({ message: 'NetGuru test task!' }); });
 
 router.post('/movie', moviesController.create);
 

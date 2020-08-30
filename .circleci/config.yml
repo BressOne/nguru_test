@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  node: circleci/node@2.0.3
+  heroku: circleci/heroku@1.0.1
+jobs:
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run lint
+  deploy-master:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: $HEROKU_APP_NAME
+          force: true
+workflows:
+  test&build&deploy:
+    jobs:
+      - test
+      - deploy-master:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
