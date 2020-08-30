@@ -6,8 +6,8 @@ const config = require('../config');
 
 const create = async (req, res) => {
   const { text, reference } = req.query;
-  if (!text) {
-    res.status(400).json({ error: { message: 'Comment text should be provided' } });
+  if (!text || !reference) {
+    res.status(400).json({ error: { message: 'Comment text and reference should be provided' } });
     res.end();
     return;
   }

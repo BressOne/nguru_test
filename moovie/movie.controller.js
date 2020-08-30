@@ -45,6 +45,11 @@ const create = async (req, res) => {
 
 const read = async (req, res) => {
   const { id, title } = req.query;
+  if (!id && !title) {
+    res.status(400).json({ error: { message: 'No title or id provided' } });
+    res.end();
+    return;
+  }
   const movie = await model.find({ $or: [{ id }, { Title: title }] });
   if (!movie || !movie._doc) {
     res.status(404).json({ error: { message: 'Requered movie not found' } });

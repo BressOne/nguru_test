@@ -16,6 +16,8 @@ module.exports = {
     host: process.env.CONTENT_PROVIDER_HOST || 'http://www.omdbapi.com/',
   },
   pagination: {
-    pageSize: process.env.PAGINATION_PAGESIZE || 10,
+    pageSize: (
+      process.env.CONTENT_PROVIDER_HOST instanceof String
+      && parseInt(process.env.CONTENT_PROVIDER_HOST, 10)) || 10,
   },
 };

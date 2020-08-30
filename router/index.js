@@ -12,7 +12,9 @@ router.get('/', (req, res) => { res.json({ message: 'NetGuru test task!' }); });
 
 router.post('/movie', moviesController.create);
 
-router.get('/movies', moviesController.read);
+router.get('/movie', moviesController.read);
+
+router.get('/movies', moviesController.readAllPaginated);
 
 router.post('/comment', commentsController.create);
 
